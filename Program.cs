@@ -32,10 +32,23 @@ public class Program
 
         var facture = new Facture("Facture Client A", 250.00m);
         facture.Imprimer();
+
+        var email = new NotificationEmail();
+        var sms = new NotificationSms();
+        var consoleNotif = new NotificationConsole();
+
+        EnvoyerNotification(email, "Votre commande est prête.");
+        EnvoyerNotification(sms, "Votre commande est prête.");
+        EnvoyerNotification(consoleNotif, "Votre commande est prête.");
     }
 
     public static void AfficherElement(IAffichage element)
     {
         element.Afficher();
+    }
+
+    public static void EnvoyerNotification(INotification notification, string message)
+    {
+        notification.Envoyer(message);
     }
 }
