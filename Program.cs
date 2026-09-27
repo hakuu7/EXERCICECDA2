@@ -1,5 +1,5 @@
-﻿Produit p = new Produit("Clavier", 49.90m);
-p.Afficher();
+﻿IAffichage element = new Produit("Clavier", 49.90m);
+element.Afficher();
 
-Client c = new Client("Alice", "alice@example.com");
-c.Afficher();
+element = new Client("Alice", "alice@example.com");
+element.Afficher();
