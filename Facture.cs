@@ -1,23 +1,15 @@
-using System;
-
-public class Facture : IImprimable, IExportable
+public class Facture : Document, IImprimable
 {
-    public int Numero { get; set; }
     public decimal Montant { get; set; }
 
-    public Facture(int numero, decimal montant)
+    public Facture(string titre, decimal montant)
     {
-        Numero = numero;
+        Titre = titre;
         Montant = montant;
     }
 
     public void Imprimer()
     {
-        Console.WriteLine($"Impression de la facture n°{Numero}");
-    }
-
-    public void Exporter(string fichier)
-    {
-        Console.WriteLine($"Facture n°{Numero} exportée vers {fichier}");
+        Console.WriteLine($"Impression de la facture '{Titre}', Montant: {Montant:C}");
     }
 }
