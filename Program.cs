@@ -1,16 +1,46 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
-var produit = new Produit("Clavier", 49.90m);
-var client = new Client("Alice", "alice@example.com");
-var commande = new Commande(1, 129.99m);
-
-List<IAffichage> elements = new();
-
-elements.Add(produit);
-elements.Add(client);
-elements.Add(commande);
-
-foreach (var element in elements)
+public class Program
 {
-    element.Afficher();
+    public static void Main(string[] args)
+    {
+        IAffichage element = new Produit("Clavier", 49.90m);
+        element.Afficher();
+
+        element = new Client("Alice", "alice@example.com");
+        element.Afficher();
+
+        var produit = new Produit("Clavier", 49.90m);
+        var client = new Client("Alice", "alice@example.com");
+        var commande = new Commande(1, 129.99m);
+
+        AfficherElement(produit);
+        AfficherElement(client);
+        AfficherElement(commande);
+
+        List<IAffichage> elements = new();
+
+        elements.Add(produit);
+        elements.Add(client);
+        elements.Add(commande);
+
+        foreach (var el in elements)
+        {
+            el.Afficher();
+        }
+
+        var facture = new Facture(1, 250.00m);
+
+        IImprimable imprimable = facture;
+        IExportable exportable = facture;
+
+        imprimable.Imprimer();
+        exportable.Exporter("facture.pdf");
+    }
+
+    public static void AfficherElement(IAffichage element)
+    {
+        element.Afficher();
+    }
 }
